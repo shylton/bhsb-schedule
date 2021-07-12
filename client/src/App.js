@@ -1,17 +1,18 @@
 import React, { useState } from 'react'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Monthly from './views/Monthly'
+import Navbar from './components/Navbar'
+
 import Container from '@material-ui/core/Container'
-import EventSummary from './components/EventSummary'
+import Box from '@material-ui/core/Box'
 
 const event = {
   id: '210711a',
-  date: new Date('2021-07-11'),
-  name: 'jewish wedding 1',
+  name: 'Goldberg Wedding',
   guest_count: 21,
-  event_start: 11,
-  event_end: 15,
-  notes: 'cool people at this wedding',
+  start: new Date('2021-07-12T11:00:00'),
+  end: new Date('2021-07-12T16:00:00'),
+  notes: 'cool people at this jewish wedding',
   staff_needed: {
     manager: 1,
     captain: 1,
@@ -26,16 +27,14 @@ const event = {
 
 function App() {
   return (
-    <Container>
-      <Typography variant='h4'>
-        BHSB Schedule
-      </Typography>
-      <Grid container>
-        {[1,2,3,4,5,6,7].map((e) =>
-          <EventSummary event={event}></EventSummary>
-        )}
-      </Grid>
-    </Container>
+    <Router>
+      <Navbar title='BHSB Schedule' icon='fa fa-calendar'/>
+      <Container fixed>
+        <Box my={3}>
+          <Monthly event={event} />
+        </Box>
+      </Container>
+    </Router>
   )
 }
 
