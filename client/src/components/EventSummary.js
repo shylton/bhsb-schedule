@@ -1,4 +1,5 @@
 import React from 'react'
+import format from 'date-fns/format'
 import useMediaQuery from '@material-ui/core/useMediaQuery'
 import { useTheme, makeStyles } from '@material-ui/core/styles'
 
@@ -19,20 +20,18 @@ const EventSummary = ({ event }) => {
     const classes = useStyles()
     const curTheme = useTheme()
     const smallScreen = useMediaQuery(curTheme.breakpoints.down('xs'))
-    const weekDay = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
     return (
         smallScreen
             ? <Grid item xs={12} className={classes.root}>
                 <Box border={1} p={1}>
                     <Typography variant='h6' className={classes.date}>
-                        {`${weekDay[event.start.getDay()]} ${event.start.getDate()}`}
+                        {format(event.start, 'eee d')}
                     </Typography>
                     <Typography>
                         {event.name}<hr></hr>
                         {event.guest_count} guests<br></br>
-                        start time: {event.start.getHours()}<br></br>
-                        end time: {event.end.getHours()}
+                        from {format(event.start, 'ha')} to {format(event.end, 'ha')}
                     </Typography>
                     <Typography variant='body2'>
                         {event.notes}
@@ -47,8 +46,7 @@ const EventSummary = ({ event }) => {
                     <Typography>
                         {event.name}<hr></hr>
                         {event.guest_count} guests<br></br>
-                        start time: {event.start.getHours()}<br></br>
-                        end time: {event.end.getHours()}
+                        {format(event.start, 'ha')} to {format(event.end, 'ha')}
                     </Typography>
                     <Typography variant='body2'>
                         {event.notes}
