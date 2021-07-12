@@ -29,7 +29,7 @@ function App() {
   return (
     <Router>
       <Navbar title='BHSB Schedule' icon='fa fa-calendar'/>
-      <Container fixed>
+      <Container>
         <Box my={3}>
           <Monthly event={event} />
         </Box>
