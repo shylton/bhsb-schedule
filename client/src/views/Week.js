@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { startOfWeek, add as addDate, isMonday } from 'date-fns'
 
 const Week = () => {
     const [curDate] = useState(new Date())
-
-    const initStartDate = () => {
+    const [startDate, setStartDate] = useState(() => {
         if (isMonday(curDate)) {
             return curDate
         } else {
             return startOfWeek(curDate, { weekStartsOn: 1 })
         }
-    }
-    
-    const [startDate, setStartDate] = useState(initStartDate())
+    })
 
+    // the 7-day week to be rendered on the page
     const getDateList = () => {
         const tempList = [startDate]
         for (let i = 0; i < 6; i++) {
@@ -23,11 +21,7 @@ const Week = () => {
     }
     const [dateList, setDateList] = useState(getDateList())
 
-    useEffect(() => {
-        setDateList(getDateList())
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [startDate])
-
+    // handleNextWeek: resets the list with new dates to be rendered
 
     return (
         <ul>
