@@ -13,3 +13,12 @@ Web app to help track staff signups for events. Features:
   - employee signup request
   - manager approve
   - generate emails
+
+  TODO next steps:
+  - connect to backend
+  - events table
+  - employees table
+  - frontend: add event form
+  - frontend: signup form
+  - employee view: which events did i sign up + total week hours
+  - detail view (?) looks like han sheet
