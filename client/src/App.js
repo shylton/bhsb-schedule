@@ -50,12 +50,46 @@ const events = [
     staff_needed: {
       manager: 1,
       captain: 1,
-      runner: 5
+      runner: 8
     },
     staff_signedup: {
       manager: 1,
       captain: 1,
-      runner: 3
+      runner: 8
+    }
+  },
+  {
+    name: 'Goldberg Wedding 3',
+    guest_count: 150,
+    start: new Date('2021-07-16T11:00:00'),
+    end: new Date('2021-07-16T16:00:00'),
+    notes: 'cool people at this jewish wedding',
+    staff_needed: {
+      manager: 1,
+      captain: 4,
+      runner: 8
+    },
+    staff_signedup: {
+      manager: 1,
+      captain: 1,
+      runner: 8
+    }
+  },
+  {
+    name: 'Goldberg Wedding 3',
+    guest_count: 150,
+    start: new Date('2021-07-17T11:00:00'),
+    end: new Date('2021-07-17T16:00:00'),
+    notes: 'cool people at this jewish wedding',
+    staff_needed: {
+      manager: 1,
+      captain: 4,
+      runner: 10
+    },
+    staff_signedup: {
+      manager: 1,
+      captain: 1,
+      runner: 8
     }
   },
   {
@@ -77,7 +111,7 @@ const events = [
   },
   {
     name: 'Steph Wedding',
-    guest_count: 21,
+    guest_count: 10,
     start: new Date('2021-07-18T18:00:00'),
     end: new Date('2021-07-18T23:00:00'),
     notes: 'cool people at this jewish wedding',
@@ -89,7 +123,7 @@ const events = [
     staff_signedup: {
       manager: 1,
       captain: 1,
-      runner: 3
+      runner: 5
     }
   },
 ]
