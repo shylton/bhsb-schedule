@@ -1,39 +1,64 @@
 import React from 'react'
-import format from 'date-fns/format'
+import PropTypes from 'prop-types'
+import { format, isToday, isPast, isFirstDayOfMonth } from 'date-fns'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 
 const useStyles = makeStyles({
-    root: {
+    default: {
         width: 135,
-    },
-    date: {
-        textAlign: 'right'
+
     },
     prevDay: {
-        color: 'gray',
+        width: 135,
+        color: 'lightGray',
         fontStyle: 'italic'
     },
     curDay: {
-        color: 'red'
+        width: 135,
+        '& > :first-child': {
+            color: 'red'
+        }
     }
 })
 
-const CalendarDay = ({ type, date, eventList }) => {
+const CalendarDay = ({ date, eventList }) => {
     const classes = useStyles()
-    const isPrevDay = `${type === 'prevDay' ? classes.prevDay : ''}`
-    const isCurDay = `${type === 'curDay' ? classes.curDay : ''}`
-    
+    const renderDate = isFirstDayOfMonth(date) ? format(date, 'MMM d') : format(date, 'd')
 
-    return (
-        <Box border={1} p={1} className={`${classes.root} ${isPrevDay}`}>
-            <Typography variant='h6' className={`${classes.date} ${isCurDay}`}>
-                {format(date, 'd')}
-            </Typography>
-        </Box>
-    )
+    if (isToday(date)) {
+        return (
+            <Box border={1} p={1} className={classes.curDay}>
+                <Typography variant='h6' style={{ textAlign: 'right' }}>
+                    {renderDate}
+                </Typography>
+            </Box>
+        )
+    } else if (isPast(date)) {
+        return (
+            <Box border={1} p={1} className={classes.prevDay}>
+                <Typography variant='h6' style={{ textAlign: 'right' }}>
+                    {renderDate}
+                </Typography>
+            </Box>
+        )
+    } else {
+        return (
+            <Box border={1} p={1} className={classes.default}>
+                <Typography variant='h6' style={{ textAlign: 'right' }}>
+                    {renderDate}
+                </Typography>
+            </Box>
+        )
+    }
+
+
+}
+
+CalendarDay.propTypes = {
+    date: PropTypes.instanceOf(Date).isRequired,
 }
 
 export default CalendarDay
