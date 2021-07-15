@@ -3,18 +3,15 @@ import PropTypes from 'prop-types'
 import { startOfWeek, add as addDate, isMonday } from 'date-fns'
 
 import { makeStyles } from '@material-ui/core/styles'
+import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import CalendarDay from '../components/CalendarDay'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
-        [theme.breakpoints.up('xs')]: {
-            width: 135
-        },
         [theme.breakpoints.up('sm')]: {
             width: 945
-        },
+        }
     }
 }))
 
@@ -35,7 +32,7 @@ const Week = ({ eventList }) => {
     // the 7-day week to be rendered on the page
     const getDateList = () => {
         const tempList = [startDate]
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < 27; i++) {
             tempList.push(addDate(tempList[i], { days: 1 }))
         }
         return tempList
@@ -45,13 +42,15 @@ const Week = ({ eventList }) => {
     // handleNextWeek: resets the list with new dates to be rendered
 
     return (
-        <Grid container align='center' className={classes.root}>
-            {dateList.map((dt) => {
-                return <Grid item key={dt.toString()}>
-                    <CalendarDay date={dt} />
+            <Container>
+                <Grid container className={classes.root} >
+                    {dateList.map((dt) => {
+                        return <Grid item xs={12} sm key={dt.toString()}>
+                            <CalendarDay date={dt} eventList={[eventList[0], eventList[1]]}/>
+                        </Grid>
+                    })}
                 </Grid>
-            })}
-        </Grid>
+            </Container>
     )
 }
 
