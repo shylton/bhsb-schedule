@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 const EventSummary = ({ event }) => {
     return (
             <Box border={1} p={0.5} style={{ marginTop: 8 }}>
-                <Typography align='left'>
+                <Typography component={'span'} align='left'>
                     {event.name}<hr></hr>
                     {event.guest_count} guests<br></br>
                     {format(event.start, 'ha')} to {format(event.end, 'ha')}

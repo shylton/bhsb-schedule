@@ -75,6 +75,23 @@ const events = [
       runner: 3
     }
   },
+  {
+    name: 'Steph Wedding',
+    guest_count: 21,
+    start: new Date('2021-07-18T18:00:00'),
+    end: new Date('2021-07-18T23:00:00'),
+    notes: 'cool people at this jewish wedding',
+    staff_needed: {
+      manager: 1,
+      captain: 1,
+      runner: 5
+    },
+    staff_signedup: {
+      manager: 1,
+      captain: 1,
+      runner: 3
+    }
+  },
 ]
 
 function App() {

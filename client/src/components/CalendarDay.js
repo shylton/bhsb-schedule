@@ -46,12 +46,13 @@ const CalendarDay = ({ date, eventList }) => {
         }
     }
 
+    // MAIN return
     if (isToday(date)) {
         return (
             <Paper>
                 <Box p={1} className={classes.curDay}>
                     {renderDate()}
-                    {eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
+                    {eventList && eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
                 </Box>
             </Paper>
         )
@@ -60,7 +61,7 @@ const CalendarDay = ({ date, eventList }) => {
             <Paper>
                 <Box p={1} className={classes.prevDay}>
                     {renderDate()}
-                    {eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
+                    {eventList && eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
                 </Box>
             </Paper>
         )
@@ -69,7 +70,7 @@ const CalendarDay = ({ date, eventList }) => {
             <Paper>
                 <Box p={1} className={classes.default}>
                     {renderDate()}
-                    {eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
+                    {eventList && eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
                 </Box>
             </Paper>
         )

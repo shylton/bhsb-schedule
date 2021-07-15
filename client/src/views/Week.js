@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import { startOfWeek, add as addDate, isMonday } from 'date-fns'
+import { startOfWeek, add as addDate, isMonday, format } from 'date-fns'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -14,6 +13,10 @@ const useStyles = makeStyles((theme) => ({
         }
     }
 }))
+
+const dateMatch = (date1, date2) => {
+    return format(date1, 'yMMd') === format(date2, 'yMMd')
+}
 
 /**
  * Description goes here
@@ -42,36 +45,21 @@ const Week = ({ eventList }) => {
     // handleNextWeek: resets the list with new dates to be rendered
 
     return (
-            <Container>
-                <Grid container spacing={1} className={classes.root} >
-                    {dateList.map((dt) => {
-                        return <Grid item xs={12} sm key={dt.toString()}>
-                            <CalendarDay date={dt} eventList={[eventList[0], eventList[1]]}/>
+        <Container>
+            <Grid container spacing={1} className={classes.root} >
+                {dateList.map((dt) => {
+                    return (
+                        <Grid item xs={12} sm key={dt.toString()}>
+                            <CalendarDay
+                                date={dt}
+                                eventList={eventList.filter((e) => dateMatch(e.start, dt))}
+                            />
                         </Grid>
-                    })}
-                </Grid>
-            </Container>
+                    )
+                })}
+            </Grid>
+        </Container>
     )
-}
-
-Week.propTypes = {
-    eventList: PropTypes.arrayOf(PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        guest_count: PropTypes.number.isRequired,
-        start: PropTypes.instanceOf(Date).isRequired,
-        end: PropTypes.instanceOf(Date).isRequired,
-        notes: PropTypes.string.isRequired,
-        staff_needed: {
-            manager: PropTypes.number.isRequired,
-            captain: PropTypes.number.isRequired,
-            runner: PropTypes.number.isRequired
-        },
-        staff_signedup: {
-            manager: PropTypes.number.isRequired,
-            captain: PropTypes.number.isRequired,
-            runner: PropTypes.number.isRequired
-        }
-    }))
 }
 
 export default Week
