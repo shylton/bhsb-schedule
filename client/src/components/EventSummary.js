@@ -5,7 +5,6 @@ import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 
 const EventSummary = ({ event }) => {
-
     return (
             <Box border={1} p={0.5} style={{ marginTop: 8 }}>
                 <Typography align='left'>

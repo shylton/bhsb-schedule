@@ -10,7 +10,7 @@ import CalendarDay from '../components/CalendarDay'
 const useStyles = makeStyles((theme) => ({
     root: {
         [theme.breakpoints.up('sm')]: {
-            width: 945
+            width: 1075
         }
     }
 }))
@@ -43,7 +43,7 @@ const Week = ({ eventList }) => {
 
     return (
             <Container>
-                <Grid container className={classes.root} >
+                <Grid container spacing={1} className={classes.root} >
                     {dateList.map((dt) => {
                         return <Grid item xs={12} sm key={dt.toString()}>
                             <CalendarDay date={dt} eventList={[eventList[0], eventList[1]]}/>

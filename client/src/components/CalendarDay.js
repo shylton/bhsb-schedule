@@ -4,6 +4,7 @@ import { format, isToday, isPast, isFirstDayOfMonth } from 'date-fns'
 import EventSummary from './EventSummary'
 
 import { makeStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 
@@ -47,28 +48,32 @@ const CalendarDay = ({ date, eventList }) => {
 
     if (isToday(date)) {
         return (
-            <Box border={1} p={1} className={classes.curDay}>
-                {renderDate()}
-                {eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
-            </Box>
+            <Paper>
+                <Box p={1} className={classes.curDay}>
+                    {renderDate()}
+                    {eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
+                </Box>
+            </Paper>
         )
     } else if (isPast(date)) {
         return (
-            <Box border={1} p={1} className={classes.prevDay}>
-                {renderDate()}
-                {eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
-            </Box>
+            <Paper>
+                <Box p={1} className={classes.prevDay}>
+                    {renderDate()}
+                    {eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
+                </Box>
+            </Paper>
         )
     } else {
         return (
-            <Box border={1} p={1} className={classes.default}>
-                {renderDate()}
-                {eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
-            </Box>
+            <Paper>
+                <Box p={1} className={classes.default}>
+                    {renderDate()}
+                    {eventList.map((e) => <EventSummary key={e.start.toString()} event={e} />)}
+                </Box>
+            </Paper>
         )
     }
-
-
 }
 
 CalendarDay.propTypes = {
