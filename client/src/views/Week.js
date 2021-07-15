@@ -1,7 +1,28 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { startOfWeek, add as addDate, isMonday } from 'date-fns'
 
-const Week = () => {
+import { makeStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
+import CalendarDay from '../components/CalendarDay'
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+        [theme.breakpoints.up('xs')]: {
+            width: 135
+        },
+        [theme.breakpoints.up('sm')]: {
+            width: 945
+        },
+    }
+}))
+
+/**
+ * Description goes here
+ */
+const Week = ({ eventList }) => {
+    const classes = useStyles()
     const [curDate] = useState(new Date())
     const [startDate, setStartDate] = useState(() => {
         if (isMonday(curDate)) {
@@ -24,12 +45,34 @@ const Week = () => {
     // handleNextWeek: resets the list with new dates to be rendered
 
     return (
-        <ul>
-            {dateList.map((e) => {
-                return <li>{e.toDateString()}</li>
+        <Grid container align='center' className={classes.root}>
+            {dateList.map((dt) => {
+                return <Grid item key={dt.toString()}>
+                    <CalendarDay date={dt} />
+                </Grid>
             })}
-        </ul>
+        </Grid>
     )
+}
+
+Week.propTypes = {
+    eventList: PropTypes.arrayOf(PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        guest_count: PropTypes.number.isRequired,
+        start: PropTypes.instanceOf(Date).isRequired,
+        end: PropTypes.instanceOf(Date).isRequired,
+        notes: PropTypes.string.isRequired,
+        staff_needed: {
+            manager: PropTypes.number.isRequired,
+            captain: PropTypes.number.isRequired,
+            runner: PropTypes.number.isRequired
+        },
+        staff_signedup: {
+            manager: PropTypes.number.isRequired,
+            captain: PropTypes.number.isRequired,
+            runner: PropTypes.number.isRequired
+        }
+    }))
 }
 
 export default Week
