@@ -81,9 +81,11 @@ function App() {
   return (
     <Router>
       <Navbar title='BHSB Schedule' icon='fa fa-calendar' />
-      <Box m={3}>
-        <Week eventList={events}/>
-      </Box>
+      <Container>
+        <Box style={{ marginTop: 16, marginBottom: 16 }}>
+          <Week eventList={events}/>
+        </Box>
+      </Container>
     </Router>
   )
 }
