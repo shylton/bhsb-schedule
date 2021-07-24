@@ -12,6 +12,8 @@ app.get('/', (req, res) => {
     res.json({ msg: 'Welcome to the bhsb schedule!' })
 })
 
+app.use('/api/events', require('./routes/events'))
+
 app.use(function (req, res, next) {
     console.log('@server.js: 404 error')
     res.status(404).send("404 ERROR. Sorry can't find that!")
