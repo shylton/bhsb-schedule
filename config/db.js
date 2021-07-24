@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
-const config = require('config')
-const dbURI = config.get('mongoURI') // uses ./default.json for dev and production.json for prod. Usually keys and dbs are different between those two files
+const dbURI = process.env.MONGO_URI
 
 const connectDB = async () => {
     try {

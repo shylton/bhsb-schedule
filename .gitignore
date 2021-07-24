@@ -24,6 +24,7 @@
 /client/yarn-error.log*
 
 # ### ROOT gitignore ###
+.env
 .DS_Store
 node_modules
 .Trashes
