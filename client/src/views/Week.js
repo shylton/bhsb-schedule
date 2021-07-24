@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { startOfWeek, add as addDate, isMonday, format } from 'date-fns'
+import { startOfWeek, add as addDate, isMonday, format, parseISO } from 'date-fns'
 
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
@@ -52,7 +52,7 @@ const Week = ({ eventList }) => {
                         <Grid item xs={12} sm key={dt.toString()}>
                             <CalendarDay
                                 date={dt}
-                                eventList={eventList.filter((e) => dateMatch(e.start, dt))}
+                                eventList={eventList.filter((e) => dateMatch(parseISO(e.start), dt))}
                             />
                         </Grid>
                     )

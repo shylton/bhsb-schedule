@@ -2,6 +2,7 @@ import React from 'react'
 import format from 'date-fns/format'
 import isFuture from 'date-fns/isFuture'
 import isToday from 'date-fns/isToday'
+import parseISO from 'date-fns/parseISO'
 
 import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
@@ -35,7 +36,7 @@ const EventSummary = ({ event }) => {
             <Typography component={'span'} align='left'>
                 {event.name}<hr></hr>
                 {event.guest_count} guests<br></br>
-                {format(event.start, 'ha')} to {format(event.end, 'ha')}
+                {format(parseISO(event.start), 'ha')} to {format(parseISO(event.end), 'ha')}
             </Typography>
             <Typography variant='body2' align='left'>
                 {event.notes}

@@ -34,6 +34,13 @@ router.post('/',
 router.get('/',
     async (req, res) => {
         // query db for all events from start date
+        try {
+            const eventsList = await Event.find()
+            res.json(eventsList)
+        } catch (err) {
+            console.error(`@routes/contacts.js GET: ${err.message}`)
+            res.status(500).send('Server Error')
+        }
     }
 )
 
