@@ -5,7 +5,6 @@ Web app to help track staff signups for events. Features:
   - homepage: 4-week rolling calendar view
     - summary of each day
     - highlights days with help needed
-  - week view: one week view showing staff details
   - employee filter: events signed up for specific employee, total hours signed up
 
   Future features:
@@ -15,8 +14,9 @@ Web app to help track staff signups for events. Features:
   - generate emails
 
   TODO next steps:
-  - connect to backend
-  - events table
+  - [done] connect to backend
+  - [done] events table
+  - deploy to heroku
   - employees table
   - frontend: add event form
   - frontend: signup form

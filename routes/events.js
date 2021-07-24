@@ -18,7 +18,6 @@ router.post('/',
         try {
             let event = new Event({ name })
             await event.save()
-            console.log('New event posted to db');
         } catch (err) {
             console.error(`@events.js [ERROR]: ${err.message}`)
             res.status(500).send('Server Error') // status 500 = server error
@@ -57,16 +56,16 @@ const events = [
         end: new Date('2021-07-21T18:00:00'),
         notes: '',
         staff_needed: {
-            manager: 1,
-            captain: 1,
-            bartender: 0,
-            runner: 0
+            managers: 1,
+            captains: 1,
+            bartenders: 0,
+            runners: 0
         },
         staff_signedup: {
-            manager: 1,
-            captain: 1,
-            bartender: 0,
-            runner: 0
+            managers: 1,
+            captains: 1,
+            bartenders: 0,
+            runners: 0
         }
     },
     {
@@ -76,16 +75,16 @@ const events = [
         end: new Date('2021-07-22T22:00:00'),
         notes: 'corporate dinner',
         staff_needed: {
-            manager: 1,
-            captain: 3,
-            bartender: 2,
-            runner: 2
+            managers: 1,
+            captains: 3,
+            bartenders: 2,
+            runners: 2
         },
         staff_signedup: {
-            manager: 1,
-            captain: 1,
-            bartender: 2,
-            runner: 3
+            managers: 1,
+            captains: 1,
+            bartenders: 2,
+            runners: 3
         }
     },
     {
@@ -95,16 +94,16 @@ const events = [
         end: new Date('2021-07-23T22:30:00'),
         notes: 'Wedding',
         staff_needed: {
-            manager: 1,
-            captain: 5,
-            bartender: 4,
-            runner: 8
+            managers: 1,
+            captains: 5,
+            bartenders: 4,
+            runners: 8
         },
         staff_signedup: {
-            manager: 1,
-            captain: 1,
-            bartender: 3,
-            runner: 6
+            managers: 1,
+            captains: 1,
+            bartenders: 3,
+            runners: 6
         }
     },
     {
@@ -114,14 +113,14 @@ const events = [
         end: new Date('2021-07-26T00:00:00'),
         notes: 'Jewish wedding',
         staff_needed: {
-            manager: 1,
-            captain: 4,
-            runner: 8
+            managers: 1,
+            captains: 4,
+            runners: 8
         },
         staff_signedup: {
-            manager: 1,
-            captain: 4,
-            runner: 8
+            managers: 1,
+            captains: 4,
+            runners: 8
         }
     },
     {
@@ -131,14 +130,14 @@ const events = [
         end: new Date('2021-07-24T23:00:00'),
         notes: 'cool people at this jewish wedding',
         staff_needed: {
-            manager: 1,
-            captain: 4,
-            runner: 10
+            managers: 1,
+            captains: 4,
+            runners: 10
         },
         staff_signedup: {
-            manager: 1,
-            captain: 1,
-            runner: 8
+            managers: 1,
+            captains: 1,
+            runners: 8
         }
     },
     {
@@ -148,33 +147,50 @@ const events = [
         end: new Date('2021-07-30T16:00:00'),
         notes: 'cool people at this jewish wedding',
         staff_needed: {
-            manager: 1,
-            captain: 1,
-            runner: 5
+            managers: 1,
+            captains: 1,
+            runners: 5
         },
         staff_signedup: {
-            manager: 1,
-            captain: 1,
-            runner: 3
+            managers: 1,
+            captains: 1,
+            runners: 3
         }
     },
     {
-        name: 'Mary Wedding',
+        name: 'Mary Lunch',
         guest_count: 10,
-        start: new Date('2021-08-07T18:00:00'),
-        end: new Date('2021-08-08T00:00:00'),
-        notes: 'cool people at this Christian wedding',
+        start: new Date('2021-08-07T11:00:00'),
+        end: new Date('2021-08-07T16:00:00'),
+        notes: 'Arroz con poyo will be served',
         staff_needed: {
-            manager: 1,
-            captain: 1,
-            runner: 5
+            managers: 1,
+            captains: 1,
+            runners: 5
         },
         staff_signedup: {
-            manager: 1,
-            captain: 1,
-            runner: 5
+            managers: 1,
+            captains: 1,
+            runners: 5
         }
     },
+    {
+        name: 'Jane Dinner',
+        guest_count: 30,
+        start: new Date('2021-08-07T18:00:00'),
+        end: new Date('2021-08-08T00:00:00'),
+        notes: 'returning vip guest',
+        staff_needed: {
+            managers: 1,
+            captains: 1,
+            runners: 5
+        },
+        staff_signedup: {
+            managers: 1,
+            captains: 1,
+            runners: 5
+        }
+    }
 ]
 
 router.post('/batch',
@@ -187,17 +203,12 @@ router.post('/batch',
                     start: e.start,
                     end: e.end,
                     notes: e.notes,
-                    managers_needed: e.staff_needed.manager,
-                    managers_signedup: e.staff_signedup.manager,
-                    captains_needed: e.staff_needed.captain,
-                    captains_signedup: e.staff_signedup.captain,
-                    runners_needed: e.staff_needed.runner,
-                    runners_signedup: e.staff_signedup.runner,
+                    staff_needed: e.staff_needed,
+                    staff_signedup: e.staff_signedup
                  })
                 await event.save()
-                console.log('New event posted to db')
             })
-            res.send('success')
+            res.send('batch success')
         } catch (err) {
             console.error(`@events.js [ERROR]: ${err.message}`)
             res.status(500).send('Server Error') // status 500 = server error

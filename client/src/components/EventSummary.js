@@ -19,12 +19,12 @@ const EventSummary = ({ event }) => {
     const classes = useStyles()
 
     const signUpBtn = () => {
-        if ((event.staff_needed.runner > event.staff_signedup.runner)
-            && (event.staff_needed.captain > event.staff_signedup.captain)) {
+        if ((event.staff_needed.runners > event.staff_signedup.runners)
+            && (event.staff_needed.captains > event.staff_signedup.captains)) {
             return <Button fullWidth className={classes.danger}>Needs Runners and Captains</Button>
-        } else if ((event.staff_needed.runner > event.staff_signedup.runner)) {
+        } else if ((event.staff_needed.runners > event.staff_signedup.runners)) {
             return <Button fullWidth className={classes.danger}>Needs Runners</Button>
-        } else if ((event.staff_needed.captain > event.staff_signedup.captain)) {
+        } else if ((event.staff_needed.captains > event.staff_signedup.captains)) {
             return <Button fullWidth className={classes.danger}>Needs Captains</Button>
         } else {
             return <Button fullWidth disabled>Fully Staffed</Button>
@@ -42,7 +42,7 @@ const EventSummary = ({ event }) => {
                 {event.notes}
             </Typography>
             {
-                (isToday(event.start) || isFuture(event.start)) &&
+                (isToday(parseISO(event.start)) || isFuture(parseISO(event.start))) &&
                 signUpBtn()
             }
         </Box>

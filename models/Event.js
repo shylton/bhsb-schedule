@@ -22,14 +22,20 @@ const EventSchema = mongoose.Schema({
         type: String,
         required: false
     },
-    managers_needed: Number,
-    managers_signedup: Number,
-    bartenders_needed: Number,
-    bartenders_signedup: Number,
-    captains_needed: Number,
-    captains_signedup: Number,
-    runners_needed: Number,
-    runners_signedup: Number,
+    staff_needed: {
+        managers: Number,
+        captains: Number,
+        bartenders: Number,
+        expos: Number,
+        runners: Number,
+    },
+    staff_signedup: {
+        managers: Number,
+        captains: Number,
+        bartenders: Number,
+        expos: Number,
+        runners: Number,
+    }
 })
 
 module.exports = mongoose.model('events', EventSchema)
