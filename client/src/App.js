@@ -6,6 +6,7 @@ import Navbar from './components/Navbar'
 import Container from '@material-ui/core/Container'
 import Week from './views/Week'
 import Login from './views/Login'
+import CreateEvent from './views/CreateEvent'
 
 function App() {
   const [events, setEvents] = useState([])
@@ -24,6 +25,7 @@ function App() {
       <Container>
         <Switch>
             <Route path='/login' component={Login} />
+            <Route path='/new_event' component={CreateEvent} />
             <Week eventList={events}/>
         </Switch>
       </Container>
