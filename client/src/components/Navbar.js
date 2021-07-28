@@ -29,7 +29,7 @@ export default function Navbar({ title, icon }) {
         <React.Fragment>
             <Button>
                 <Link to="/login" className={classes.navbarLink}>
-                    Log in
+                    <i className="fas fa-sign-in-alt"></i> Log in
                 </Link>
             </Button>
             <Button>

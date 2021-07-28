@@ -16,7 +16,8 @@ Web app to help track staff signups for events. Features:
   TODO next steps:
   - [done] connect to backend
   - [done] events table
-  - deploy to heroku
+  - [done] deploy to heroku
+  - create new event
   - employees table
   - frontend: add event form
   - frontend: signup form

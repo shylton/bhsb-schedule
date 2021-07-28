@@ -4,8 +4,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Navbar from './components/Navbar'
 
 import Container from '@material-ui/core/Container'
-import Box from '@material-ui/core/Box'
 import Week from './views/Week'
+import Login from './views/Login'
 
 function App() {
   const [events, setEvents] = useState([])
@@ -22,9 +22,10 @@ function App() {
     <Router>
       <Navbar title='BHSB Schedule' icon='fa fa-calendar' />
       <Container>
-        <Box style={{ marginTop: 16, marginBottom: 16 }}>
-          <Week eventList={events}/>
-        </Box>
+        <Switch>
+            <Route path='/login' component={Login} />
+            <Week eventList={events}/>
+        </Switch>
       </Container>
     </Router>
   )

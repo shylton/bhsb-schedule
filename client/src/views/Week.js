@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
 import CalendarDay from '../components/CalendarDay'
+import { Box } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,20 +46,22 @@ const Week = ({ eventList }) => {
     // handleNextWeek: resets the list with new dates to be rendered
 
     return (
-        <Container>
-            <Grid container spacing={1} className={classes.root} >
-                {dateList.map((dt) => {
-                    return (
-                        <Grid item xs={12} sm key={dt.toString()}>
-                            <CalendarDay
-                                date={dt}
-                                eventList={eventList.filter((e) => dateMatch(parseISO(e.start), dt))}
-                            />
-                        </Grid>
-                    )
-                })}
-            </Grid>
-        </Container>
+        <Box style={{ marginTop: 16, marginBottom: 16 }}>
+            <Container>
+                <Grid container spacing={1} className={classes.root} >
+                    {dateList.map((dt) => {
+                        return (
+                            <Grid item xs={12} sm key={dt.toString()}>
+                                <CalendarDay
+                                    date={dt}
+                                    eventList={eventList.filter((e) => dateMatch(parseISO(e.start), dt))}
+                                />
+                            </Grid>
+                        )
+                    })}
+                </Grid>
+            </Container>
+        </Box>
     )
 }
 
