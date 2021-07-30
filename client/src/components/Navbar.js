@@ -28,8 +28,13 @@ export default function Navbar({ title, icon }) {
     const initLinks = (
         <React.Fragment>
             <Button>
+                <Link to="/new_event" className={classes.navbarLink}>
+                    Add Event
+                </Link>
+            </Button>
+            <Button>
                 <Link to="/login" className={classes.navbarLink}>
-                    <i className="fas fa-sign-in-alt"></i> Log in
+                    <i className="fas fa-sign-in-alt"></i> Log In
                 </Link>
             </Button>
             <Button>

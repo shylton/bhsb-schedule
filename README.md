@@ -17,8 +17,9 @@ Web app to help track staff signups for events. Features:
   - [done] connect to backend
   - [done] events table
   - [done] deploy to heroku
-  - create new event
+  - create new events
   - employees table
+  - [refactor navbar] reddit navbar is cool, uses modal
   - frontend: add event form
   - frontend: signup form
   - employee view: which events did i sign up + total week hours

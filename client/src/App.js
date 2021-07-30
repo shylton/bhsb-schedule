@@ -12,10 +12,8 @@ function App() {
   const [events, setEvents] = useState([])
   useEffect(() => {
     axios.get('/api/events').then(res => {
-      console.log(res.data)
       setEvents(res.data)
     })
-    console.log(events)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
