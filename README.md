@@ -1,4 +1,5 @@
 # Blue Hill Events Schedule
+Your app can be found at https://bhsb-schedule-sample.herokuapp.com/
 
 Web app to help track staff signups for events. Features:
 
